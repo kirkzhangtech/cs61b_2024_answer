@@ -119,7 +119,31 @@ public class Model {
      * 2. There are two adjacent tiles with the same value.
      */
     public boolean atLeastOneMoveExists() {
-        // TODO: Fill in this function.
+        // 检查是否有空格
+        if (emptySpaceExists()) {
+            return true;
+            // 检查是否有2048
+        }else if (maxTileExists()){
+            return  true;
+        }
+
+        // 遍历棋盘,检查是否有相邻的相同数值的方块
+        for (int row = 0; row < board.size(); row++) {
+            for (int col = 0; col < board.size() ; col++) {
+                Tile tile = board.tile(row, col);
+                if (tile != null) {
+                    // 检查上下左右是否有相同数值的方块
+                    if ((row > 0 && board.tile(row - 1, col).value() == tile.value()) ||
+                            (row < 3 && board.tile(row + 1, col).value() == tile.value()) ||
+                            (col > 0 && board.tile(row, col - 1).value() == tile.value()) ||
+                            (col < 3 && board.tile(row, col + 1).value() == tile.value())) {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        // 如果没有空格,也没有相邻的相同数值的方块,则返回 false
         return false;
     }
 
