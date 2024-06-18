@@ -122,28 +122,28 @@ public class Model {
         // 检查是否有空格
         if (emptySpaceExists()) {
             return true;
-            // 检查是否有2048
-        }else if (maxTileExists()){
-            return  true;
         }
-
-        // 遍历棋盘,检查是否有相邻的相同数值的方块
-        for (int row = 0; row < board.size(); row++) {
-            for (int col = 0; col < board.size() ; col++) {
-                Tile tile = board.tile(row, col);
-                if (tile != null) {
-                    // 检查上下左右是否有相同数值的方块
-                    if ((row > 0 && board.tile(row - 1, col).value() == tile.value()) ||
-                            (row < 3 && board.tile(row + 1, col).value() == tile.value()) ||
-                            (col > 0 && board.tile(row, col - 1).value() == tile.value()) ||
-                            (col < 3 && board.tile(row, col + 1).value() == tile.value())) {
-                        return true;
-                    }
+        /* 在排除了有empty-space的情况后，实际上只需要判断相邻的tile的value是否相等 */
+        for (int i = 0; i < size(); i++) {
+            for (int j = 0; j < size() - 1; j++) {
+                /* 判断每一列能否移动 */
+                Tile tx = tile(i, j);
+                Tile tx1 = tile(i, j + 1);
+                if (tx.value() == tx1.value()) {
+                    return true;
                 }
             }
         }
-
-        // 如果没有空格,也没有相邻的相同数值的方块,则返回 false
+        for (int j = 0; j < size(); j++) {
+            for (int i = 0; i < size() - 1; i++) {
+                /* 判断每一行能否移动 */
+                Tile ty = tile(i, j);
+                Tile ty1 = tile(i + 1, j);
+                if (ty.value() == ty1.value()) {
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
@@ -164,22 +164,23 @@ public class Model {
     public void moveTileUpAsFarAsPossible(int x, int y) {
         Tile currTile = board.tile(x, y);
         int myValue = currTile.value();
-        int targetY = y;
+        // int targetY = y;
 
-        Tile t  = tile(x,y);
+        // TODO: Tasks 5, 6, and 10. Fill in this function.
+        // 判断能移动到的最上端
+        for (int r = size() - 1; r > y; r--) {
+            Tile upTile = tile(x, r);
+            if (upTile == null) {
+                board.move(x, r, currTile);
+                break;
 
-        Tile tile = board.tile(x, y);
-        if (tile == null) {
-            return; // No tile to move
-        }
-
-        int targetX = x;
-        while (targetX > 0 && board.tile(targetX - 1, y) == null) {
-            targetX--;
-        }
-
-        if (targetX != x) {
-            board.move(targetX, y, tile);
+            } else if (upTile.value() == currTile.value() && !currTile.wasMerged() && !upTile.wasMerged()) {
+                board.move(x, r, currTile);
+                score += 2 * currTile.value();
+                break;
+            } else {
+                continue;
+            }
         }
 
 
@@ -206,15 +207,9 @@ public class Model {
 
       board.setViewingPerspective(side);
 
-//        board.resetMerged();
-    for (int x = board.size() - 1; x >= 0 ; x-- ){
-            for (int y=board.size()-1; y >= 0 ; y--){
-                if(tile(x,y) != null){
-                    moveTileUpAsFarAsPossible(x,y);
-
-                }
-            }
-      }
+        for (int c = 0; c < size(); c++) {
+            tiltColumn(c);
+        }
 
       board.setViewingPerspective(Side.NORTH);
 
