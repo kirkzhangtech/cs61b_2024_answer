@@ -119,4 +119,34 @@ public class TestMoveTileUp {
         assertWithMessage("Boards should match:").that(before.toString()).isEqualTo(after.toString());
     }
 
+
+
+    /** no merge just move*/
+    @Test
+    @Tag("moveTileUpAsFarAsPossible")
+    @DisplayName("OneSpace")
+    @GradedTest(number = "10.4")
+    public void testOneSpace() {
+        int[][] board = {
+                {16, 0, 0, 0},
+                {8, 0, 0, 0},
+                {0, 0, 0, 0},
+                {2, 0, 0, 0}
+        };
+        Model before = new Model(board, 0);
+        before.moveTileUpAsFarAsPossible(0, 0);
+
+        int[][] result = {
+                {16, 0, 0, 0},
+                {8, 0, 0, 0},
+                {2, 0, 0, 0},
+                {0, 0, 0, 0}
+        };
+
+        Model after = new Model(result, 0);
+        assertWithMessage("Boards should match:").that(before.toString()).isEqualTo(after.toString());
+    }
+
+
+
 }

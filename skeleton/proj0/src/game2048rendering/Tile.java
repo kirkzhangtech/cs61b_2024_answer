@@ -25,6 +25,9 @@ public class Tile {
         this._merged = merged;
     }
 
+    public void setTileMergeStatus(boolean merged){
+        this._merged = merged;
+    }
     /** Return my current y-coordinate. */
     int y() {
         return _y;
