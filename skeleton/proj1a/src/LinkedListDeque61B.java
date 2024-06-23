@@ -1,60 +1,88 @@
 import java.util.List;
 
-/**
- * Created by hug on 2/4/2017. Methods are provided in the suggested order
- * that they should be completed.
- */
-public interface Deque61B<T> {
+public class LinkedListDeque61B<E> implements Deque61B<E> {
+
+    private Node<E> first ;
+
+    private Node<E> last;
+
+    private int size;
+
+
+    public  LinkedListDeque61B(){
+
+    }
+
 
     /**
      * Add {@code x} to the front of the deque. Assumes {@code x} is never null.
      *
      * @param x item to add
      */
-    void addFirst(T x);
+    @Override
+    public void addFirst(E x) {
+
+    }
 
     /**
      * Add {@code x} to the back of the deque. Assumes {@code x} is never null.
      *
      * @param x item to add
      */
-    void addLast(T x);
+    @Override
+    public void addLast(E x) {
 
+    }
 
     /**
      * Returns a List copy of the deque. Does not alter the deque.
      *
      * @return a new list copy of the deque.
      */
-    List<T> toList();
+    @Override
+    public List<E> toList() {
+        return List.of();
+    }
 
     /**
      * Returns if the deque is empty. Does not alter the deque.
      *
      * @return {@code true} if the deque has no elements, {@code false} otherwise.
      */
-    boolean isEmpty();
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
 
     /**
      * Returns the size of the deque. Does not alter the deque.
      *
      * @return the number of items in the deque.
      */
-    int size();
+    @Override
+    public int size() {
+        return 0;
+    }
 
     /**
      * Remove and return the element at the front of the deque, if it exists.
      *
      * @return removed element, otherwise {@code null}.
      */
-    T removeFirst();
+    @Override
+    public E removeFirst() {
+        return null;
+    }
 
     /**
      * Remove and return the element at the back of the deque, if it exists.
      *
      * @return removed element, otherwise {@code null}.
      */
-    T removeLast();
+    @Override
+    public E removeLast() {
+        return null;
+    }
 
     /**
      * The Deque61B abstract data type does not typically have a get method,
@@ -65,7 +93,10 @@ public interface Deque61B<T> {
      * @param index index to get
      * @return element at {@code index} in the deque
      */
-    T get(int index);
+    @Override
+    public E get(int index) {
+        return null;
+    }
 
     /**
      * This method technically shouldn't be in the interface, but it's here
@@ -75,5 +106,29 @@ public interface Deque61B<T> {
      * @param index index to get
      * @return element at {@code index} in the deque
      */
-    T getRecursive(int index);
+    @Override
+    public E getRecursive(int index) {
+        return null;
+    }
+
+
+     private static class Node<E> {
+
+        private Node<E> previous;
+
+        private Node<E> next;
+
+        E element;
+
+        public void Node(Node<E> previous , Node<E> next , E elment){
+            this.previous = previous;
+            this.next = next;
+            this.element = elment;
+
+        }
+
+
+    }
+
+
 }
