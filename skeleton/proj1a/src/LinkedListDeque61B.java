@@ -1,17 +1,43 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class LinkedListDeque61B<E> implements Deque61B<E> {
 
-    private Node<E> first ;
 
-    private Node<E> last;
+    private  Node first ;
+    private  Node last ;
+
 
     private int size;
 
 
-    public  LinkedListDeque61B(){
+    private  class Node {
+
+        private Node prev;
+
+        private Node next;
+
+        E element;
+
+
+
+        public Node(Node previous , E elment , Node next ){
+            this.prev = previous;
+            this.element = elment;
+            this.next = next;
+
+        }
 
     }
+
+    public  LinkedListDeque61B(){
+            first = new Node(null,null,null);
+            last = new Node(null,null,null);
+            first.next = last;
+            last.prev = first;
+
+    }
+
 
 
     /**
@@ -21,7 +47,15 @@ public class LinkedListDeque61B<E> implements Deque61B<E> {
      */
     @Override
     public void addFirst(E x) {
+        final Node f = first;
+        final Node newNode = new Node(null, x, null);
 
+        f.next.prev = newNode;
+        newNode.next = f.next;
+        f.next = newNode;
+        newNode.prev = f;
+
+        size++;
     }
 
     /**
@@ -31,7 +65,13 @@ public class LinkedListDeque61B<E> implements Deque61B<E> {
      */
     @Override
     public void addLast(E x) {
-
+        final Node l = last;
+        final Node newNode = new Node(null, x , null);
+        l.prev.next = newNode;
+        newNode.prev = l.prev;
+        l.prev = newNode;
+        newNode.next = l;
+        size++;
     }
 
     /**
@@ -41,7 +81,17 @@ public class LinkedListDeque61B<E> implements Deque61B<E> {
      */
     @Override
     public List<E> toList() {
-        return List.of();
+        ArrayList<E> arrayList = new ArrayList<>();
+
+
+        for( Node current = first.next  ; current.next != null ; current = current.next ){
+            arrayList.add(current.element);
+//            current = current.next;
+        }
+
+        return arrayList;
+
+
     }
 
     /**
@@ -51,7 +101,9 @@ public class LinkedListDeque61B<E> implements Deque61B<E> {
      */
     @Override
     public boolean isEmpty() {
-        return false;
+//        if(first.next == null);
+//            return true;
+        return (first.next == null)? true : false;
     }
 
     /**
@@ -61,7 +113,14 @@ public class LinkedListDeque61B<E> implements Deque61B<E> {
      */
     @Override
     public int size() {
-        return 0;
+        int size=0;
+        Node current = first;
+
+        while (current != null) {
+            size++;
+            current = current.next;
+        }
+        return size;
     }
 
     /**
@@ -112,23 +171,8 @@ public class LinkedListDeque61B<E> implements Deque61B<E> {
     }
 
 
-     private static class Node<E> {
-
-        private Node<E> previous;
-
-        private Node<E> next;
-
-        E element;
-
-        public void Node(Node<E> previous , Node<E> next , E elment){
-            this.previous = previous;
-            this.next = next;
-            this.element = elment;
-
-        }
 
 
-    }
 
 
 }
