@@ -1,5 +1,3 @@
-import jh61b.utils.Reflection;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static com.google.common.truth.Truth.assertThat;
@@ -73,7 +71,6 @@ public class LinkedListDeque61BTest {
     }
 
     @Test
-
     public void removeTestBasic() {
         Deque61B<String> lld1 = new LinkedListDeque61B<>();
 
@@ -84,6 +81,20 @@ public class LinkedListDeque61BTest {
         assertThat(lld1.toList()).containsExactly("front", "middle").inOrder();
     }
 
+    @Test
+    public void getIndexTest(){
+
+        Deque61B<String> lld1 = new LinkedListDeque61B<>();
+
+        lld1.addLast("front"); // after this call we expect: ["front"]
+        lld1.addLast("middle"); // after this call we expect: ["front", "middle"]
+        lld1.addLast("back"); // after this call we expect: ["front", "middle", "back"]
+
+        assertThat(lld1.get(1)).isEqualTo("middle");
+
+
+
+    }
 
 
 

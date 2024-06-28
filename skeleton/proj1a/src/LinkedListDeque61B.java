@@ -83,10 +83,8 @@ public class LinkedListDeque61B<E> implements Deque61B<E> {
     public List<E> toList() {
         ArrayList<E> arrayList = new ArrayList<>();
 
-
         for( Node current = first.next  ; current.next != null ; current = current.next ){
             arrayList.add(current.element);
-//            current = current.next;
         }
 
         return arrayList;
@@ -101,8 +99,7 @@ public class LinkedListDeque61B<E> implements Deque61B<E> {
      */
     @Override
     public boolean isEmpty() {
-//        if(first.next == null);
-//            return true;
+
         return (first.next == null)? true : false;
     }
 
@@ -166,13 +163,17 @@ public class LinkedListDeque61B<E> implements Deque61B<E> {
      */
     @Override
     public E get(int index) {
-        Node l = last ;
-
-        last = l.prev;
-        last.next = null;
-        l.prev = null;
-        size--;
-        return l.element;
+//        int i = 1;
+//        for(Node current = first.next ; current != null ; current=current.next ){
+//            if(i == index){
+//               return  current.element;
+//            }
+//            i++;
+//
+//        }
+//
+//
+        return null;
     }
 
     /**
@@ -182,11 +183,17 @@ public class LinkedListDeque61B<E> implements Deque61B<E> {
      *
      * @param index index to get
      * @return element at {@code index} in the deque
+     *
      */
     @Override
     public E getRecursive(int index) {
+
+
+
         return null;
     }
+
+
 
 
 
