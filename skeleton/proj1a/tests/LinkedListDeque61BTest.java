@@ -56,5 +56,35 @@ public class LinkedListDeque61BTest {
          assertThat(lld1.toList()).containsExactly(-2, -1, 0, 1, 2).inOrder();
      }
 
-    // Below, you'll write your own tests for LinkedListDeque61B.
+    @Test
+    /** This test performs interspersed addFirst and addLast calls. */
+    public void removeFirstTest() {
+        Deque61B<Integer> lld1 = new LinkedListDeque61B<>();
+
+         /* I've decided to add in comments the state after each call for the convenience of the
+            person reading this test. Some programmers might consider this excessively verbose. */
+        lld1.addLast(0);   // [0]
+        lld1.addLast(1);   // [0, 1]
+        lld1.addFirst(-1); // [-1, 0, 1]
+        lld1.addLast(2);   // [-1, 0, 1, 2]
+        lld1.addFirst(-2); // [-2, -1, 0, 1, 2]
+        lld1.removeFirst();
+        assertThat(lld1.toList()).containsExactly( -1, 0, 1, 2).inOrder();
+    }
+
+    @Test
+
+    public void removeTestBasic() {
+        Deque61B<String> lld1 = new LinkedListDeque61B<>();
+
+        lld1.addLast("front"); // after this call we expect: ["front"]
+        lld1.addLast("middle"); // after this call we expect: ["front", "middle"]
+        lld1.addLast("back"); // after this call we expect: ["front", "middle", "back"]
+        lld1.removeLast();
+        assertThat(lld1.toList()).containsExactly("front", "middle").inOrder();
+    }
+
+
+
+
 }

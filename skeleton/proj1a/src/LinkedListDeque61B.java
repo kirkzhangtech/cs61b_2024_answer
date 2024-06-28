@@ -130,7 +130,13 @@ public class LinkedListDeque61B<E> implements Deque61B<E> {
      */
     @Override
     public E removeFirst() {
-        return null;
+
+        Node f =first;
+        first = f.next;
+        f.next = null;
+        first.prev = null;
+        size--;
+        return f.element;
     }
 
     /**
@@ -140,7 +146,13 @@ public class LinkedListDeque61B<E> implements Deque61B<E> {
      */
     @Override
     public E removeLast() {
-        return null;
+
+        Node l = last;
+        last = l.prev;
+        last.next = null;
+        l.prev = null;
+        size--;
+        return l.element;
     }
 
     /**
@@ -154,7 +166,13 @@ public class LinkedListDeque61B<E> implements Deque61B<E> {
      */
     @Override
     public E get(int index) {
-        return null;
+        Node l = last ;
+
+        last = l.prev;
+        last.next = null;
+        l.prev = null;
+        size--;
+        return l.element;
     }
 
     /**
