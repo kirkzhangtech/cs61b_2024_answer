@@ -85,14 +85,20 @@ public class LinkedListDeque61BTest {
     public void getIndexTest(){
 
         Deque61B<String> lld1 = new LinkedListDeque61B<>();
+        lld1.addFirst("front"); // after this call we expect: ["front"]
+        lld1.addFirst("middle"); // after this call we expect: ["front", "middle"]
+        lld1.addFirst("back"); // after this call we expect: ["front", "middle", "back"]
+        assertThat(lld1.get(1)).isEqualTo("back");
+    }
 
-        lld1.addLast("front"); // after this call we expect: ["front"]
-        lld1.addLast("middle"); // after this call we expect: ["front", "middle"]
-        lld1.addLast("back"); // after this call we expect: ["front", "middle", "back"]
+    @Test
+    public void getRecursiveTest(){
 
-        assertThat(lld1.get(1)).isEqualTo("middle");
-
-
+        Deque61B<String> lld1 = new LinkedListDeque61B<>();
+        lld1.addFirst("front");
+        lld1.addFirst("middle");
+        lld1.addFirst("back");
+        assertThat(lld1.getRecursive(1)).isEqualTo("back");
 
     }
 

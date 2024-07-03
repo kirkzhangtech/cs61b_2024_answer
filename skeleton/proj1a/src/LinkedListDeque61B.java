@@ -163,17 +163,16 @@ public class LinkedListDeque61B<E> implements Deque61B<E> {
      */
     @Override
     public E get(int index) {
-//        int i = 1;
-//        for(Node current = first.next ; current != null ; current=current.next ){
-//            if(i == index){
-//               return  current.element;
-//            }
-//            i++;
-//
-//        }
-//
-//
-        return null;
+        if (index >= size || index <= 0) {
+            return null;
+        } else {
+            Node curr = first.next;
+            while (index > 1) {
+                curr = curr.next;
+                index -= 1;
+            }
+            return curr.element;
+        }
     }
 
     /**
@@ -187,17 +186,17 @@ public class LinkedListDeque61B<E> implements Deque61B<E> {
      */
     @Override
     public E getRecursive(int index) {
-
-
-
-        return null;
+        if (index <= 0 || index >= size) {
+            return null; // 索引超出边界，返回 null
+        }
+        return getRecursiveHelper(index, first); // 调用辅助方法进行递归
     }
 
-
-
-
-
-
-
+    private E getRecursiveHelper(int index, Node current) {
+        if (index == 0) {
+            return current.element; // 找到了指定索引的节点，返回其元素
+        }
+        return getRecursiveHelper(index - 1, current.next); // 继续递归到下一个节点
+    }
 
 }
