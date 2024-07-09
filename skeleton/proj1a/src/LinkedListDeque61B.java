@@ -4,8 +4,8 @@ import java.util.List;
 public class LinkedListDeque61B<E> implements Deque61B<E> {
 
 
-    private  Node first ;
-    private  Node last ;
+    private  Node first;
+    private  Node last;
 
 
     private int size;
@@ -21,7 +21,7 @@ public class LinkedListDeque61B<E> implements Deque61B<E> {
 
 
 
-        public Node(Node previous , E elment , Node next ){
+        public Node(Node previous, E elment, Node next) {
             this.prev = previous;
             this.element = elment;
             this.next = next;
@@ -30,11 +30,11 @@ public class LinkedListDeque61B<E> implements Deque61B<E> {
 
     }
 
-    public  LinkedListDeque61B(){
-            first = new Node(null,null,null);
-            last = new Node(null,null,null);
-            first.next = last;
-            last.prev = first;
+    public  LinkedListDeque61B() {
+        first = new Node(null, null, null);
+        last = new Node(null, null, null);
+        first.next = last;
+        last.prev = first;
 
     }
 
@@ -66,7 +66,7 @@ public class LinkedListDeque61B<E> implements Deque61B<E> {
     @Override
     public void addLast(E x) {
         final Node l = last;
-        final Node newNode = new Node(null, x , null);
+        final Node newNode = new Node(null, x, null);
         l.prev.next = newNode;
         newNode.prev = l.prev;
         l.prev = newNode;
@@ -83,7 +83,7 @@ public class LinkedListDeque61B<E> implements Deque61B<E> {
     public List<E> toList() {
         ArrayList<E> arrayList = new ArrayList<>();
 
-        for( Node current = first.next  ; current.next != null ; current = current.next ){
+        for (Node current = first.next; current.next != null; current = current.next) {
             arrayList.add(current.element);
         }
 
@@ -100,7 +100,7 @@ public class LinkedListDeque61B<E> implements Deque61B<E> {
     @Override
     public boolean isEmpty() {
 
-        return (first.next == null)? true : false;
+        return (first.next == null) ? true : false;
     }
 
     /**
@@ -110,7 +110,7 @@ public class LinkedListDeque61B<E> implements Deque61B<E> {
      */
     @Override
     public int size() {
-        int size=0;
+        int size = 0;
         Node current = first;
 
         while (current != null) {
@@ -128,7 +128,7 @@ public class LinkedListDeque61B<E> implements Deque61B<E> {
     @Override
     public E removeFirst() {
 
-        Node f =first;
+        Node f = first;
         first = f.next;
         f.next = null;
         first.prev = null;
