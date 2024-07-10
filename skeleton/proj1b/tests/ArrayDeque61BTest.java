@@ -20,4 +20,22 @@ public class ArrayDeque61BTest {
         assertWithMessage("Found fields that are not array or primitives").that(badFields).isEmpty();
     }
 
+    @Test
+    @DisplayName("ArrayDeque addFirst function test without resize")
+    public void  addFirstTest(){
+
+        ArrayDeque61B ad  = new ArrayDeque61B<String>();
+
+        ad.addFirst("my");
+        ad.addFirst("name");
+        ad.addFirst("is");
+        ad.addFirst("kirk");
+
+        assertThat(ad.toList()).containsExactly("my","name","is","kirk").inOrder(); 
+        // (["my","name","is","kirk"]);
+        // assertThat(lld1.toList()).containsExactly("front", "middle", "back").inOrder();
+
+
+    }
+
 }
