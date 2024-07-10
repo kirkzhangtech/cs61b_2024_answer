@@ -54,4 +54,22 @@ public class ArrayDeque61BTest {
 
     }
 
+    @Test
+    @DisplayName("addFirst addLast  mix function test without resize")
+    public void  addFirstLastTest(){
+
+        ArrayDeque61B ad  = new ArrayDeque61B<String>();
+
+        ad.addLast("my");
+        ad.addFirst("name");
+        ad.addLast("is");
+        ad.addFirst("kirk");
+
+        assertThat(ad.toList()).containsExactly("kirk","name","my","is").inOrder(); 
+ 
+
+
+    }
+
+
 }
