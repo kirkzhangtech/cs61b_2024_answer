@@ -65,6 +65,8 @@ public class ArrayDeque61BTest {
         ad.addLast("is");
         ad.addFirst("kirk");
 
+
+        
         assertThat(ad.toList()).containsExactly("kirk","name","my","is").inOrder(); 
  
 
