@@ -37,5 +37,21 @@ public class ArrayDeque61BTest {
 
 
     }
+    @Test
+    @DisplayName("ArrayDeque addLast function test without resize")
+    public void  addLastTest(){
+
+        ArrayDeque61B ad  = new ArrayDeque61B<String>();
+
+        ad.addLast("my");
+        ad.addLast("name");
+        ad.addLast("is");
+        ad.addLast("kirk");
+
+        assertThat(ad.toList()).containsExactly("my","name","is","kirk").inOrder(); 
+ 
+
+
+    }
 
 }

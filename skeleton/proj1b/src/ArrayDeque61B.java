@@ -22,7 +22,7 @@ public class ArrayDeque61B<T> implements Deque61B<T>  {
           items = (T[]) new Object[InitializationCap];
           size = 0;
           first = 3;
-          last = 4;
+          last = 3;
     }
 
     public boolean  isFull() {
