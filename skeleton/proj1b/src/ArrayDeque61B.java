@@ -10,9 +10,9 @@ public class ArrayDeque61B<T> implements Deque61B<T>  {
 
     private double resizeFactor = 0.75;
 
-    private int nextFirst = 0;
+    private int first = 0;
 
-    private int nextLast = 0;
+    private int last = 0;
 
     private T[] items = null;
 
@@ -21,8 +21,8 @@ public class ArrayDeque61B<T> implements Deque61B<T>  {
     public ArrayDeque61B(){
           items = (T[]) new Object[InitializationCap];
           size = 0;
-          nextFirst = 3;
-          nextLast = 4;
+          first = 3;
+          last = 4;
     }
 
     public boolean  isFull() {
@@ -43,8 +43,10 @@ public class ArrayDeque61B<T> implements Deque61B<T>  {
         if (isFull()){
             throw new IllegalStateException("array is full");
         }
-        items[nextFirst] = x;
-        nextFirst = (nextFirst - 1) % items.length;
+        
+        first = (first - 1 + items.length) % items.length;
+        items[first] = x;
+
         size++;
     }
 
@@ -53,8 +55,8 @@ public class ArrayDeque61B<T> implements Deque61B<T>  {
         if (isFull()){
             throw new IllegalStateException("array is full");
         }
-        items[nextLast] = x;
-        nextLast = (nextLast + 1) % items.length;
+        items[last] = x;
+        last = (last + 1) % items.length;
         size++;
     }
 
@@ -62,12 +64,12 @@ public class ArrayDeque61B<T> implements Deque61B<T>  {
     public List<T> toList() {
 
         List<T> returnList = new ArrayList<>();
-        int index = 0;
+        int currentIndex = first;
 
-        for (int i = 0; i < size; i++) {
-            index = adjustIndex(index);
-            returnList.add(items[index]);
-            index += 1;
+        for(int  i = 0 ; i < size ; i++){
+            returnList.add(items[currentIndex]);
+            currentIndex = (currentIndex + 1 )  % items.length;
+
         }
 
         return returnList;

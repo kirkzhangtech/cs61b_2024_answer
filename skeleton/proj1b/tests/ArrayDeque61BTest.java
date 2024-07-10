@@ -31,7 +31,7 @@ public class ArrayDeque61BTest {
         ad.addFirst("is");
         ad.addFirst("kirk");
 
-        assertThat(ad.toList()).containsExactly("my","name","is","kirk").inOrder(); 
+        assertThat(ad.toList()).containsExactly("kirk","is","name","my").inOrder(); 
         // (["my","name","is","kirk"]);
         // assertThat(lld1.toList()).containsExactly("front", "middle", "back").inOrder();
 
