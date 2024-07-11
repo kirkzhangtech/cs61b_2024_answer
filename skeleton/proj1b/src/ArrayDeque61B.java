@@ -41,10 +41,10 @@ public class ArrayDeque61B<T> implements Deque61B<T>  {
 
     @Override
     public void addFirst(T x) {
-        if (isFull()){
-            throw new IllegalStateException("array is full");
+        if (size == items.length) {
+            resize(size * 2);
         }
-        
+
         first = (first - 1 + items.length) % items.length;
         items[first] = x;
 
@@ -53,8 +53,8 @@ public class ArrayDeque61B<T> implements Deque61B<T>  {
 
     @Override
     public void addLast(T x) {
-        if (isFull()){
-            throw new IllegalStateException("array is full");
+        if (size == items.length) {
+            resize(size * 2);
         }
         items[last] = x;
         last = (last + 1) % items.length;
@@ -134,17 +134,15 @@ public class ArrayDeque61B<T> implements Deque61B<T>  {
     // size * RFACTOR     RFACTOR = 0.25 = size / length
     private void resize(int capacity) {
 
-        T[] a = (T[])(new Object[capacity]);
-        int index = first;
+      T[] newArray = (T[]) new Object[capacity];
+        int current = first;
         for (int i = 0; i < size; i++) {
-            // index = adjustIndex(index);
-            if (index == items.length) {
-                index = 0;
-            }
-            a[i] = items[index];
-            index += 1;
+            newArray[i] = items[current];
+            current = (current + 1) % items.length;
         }
-        items = a;
+        items = newArray;
+        first = 0;
+        last = size == capacity ? 0 : size;
     }
 
 

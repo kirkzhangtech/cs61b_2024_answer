@@ -24,7 +24,7 @@ public class ArrayDeque61BTest {
 
     @Test
     @DisplayName("ArrayDeque addFirst function test without resize")
-    public void  addFirstTest(){
+    public void  testAddFirst(){
 
         ArrayDeque61B ad  = new ArrayDeque61B<String>();
 
@@ -41,7 +41,7 @@ public class ArrayDeque61BTest {
     }
     @Test
     @DisplayName("ArrayDeque addLast function test without resize")
-    public void  addLastTest(){
+    public void  testAddLast(){
 
         ArrayDeque61B ad  = new ArrayDeque61B<String>();
 
@@ -58,7 +58,7 @@ public class ArrayDeque61BTest {
 
     @Test
     @DisplayName("addFirst addLast  mix function test without resize")
-    public void  addFirstLastTest(){
+    public void  testAddFirstLast(){
 
         ArrayDeque61B ad  = new ArrayDeque61B<String>();
 
@@ -77,7 +77,7 @@ public class ArrayDeque61BTest {
 
     @Test
     @DisplayName("test get() function without resize")
-    public void  getTest(){
+    public void  testGet(){
 
         ArrayDeque61B ad  = new ArrayDeque61B<String>();
 
@@ -85,6 +85,30 @@ public class ArrayDeque61BTest {
         ad.addLast("name");
         ad.addLast("is");
         ad.addLast("kirk");
+        ad.addLast("kirk");
+        ad.addLast("kirk");
+        ad.addLast("kirk");
+        ad.addLast("kirk");
+        ad.addLast("kirk");
+        ad.addLast("kirk");
+        ad.addLast("kirk");
+        ad.addLast("kirk");
+        ad.addLast("kirk");
+        ad.addLast("kirk");
+        ad.addLast("kirk");
+        ad.addLast("kirk");
+        ad.addLast("kirk");
+        ad.addLast("kirk");
+        ad.addLast("kirk");
+        ad.addLast("kirk");
+        ad.addLast("kirk");
+        ad.addLast("kirk");
+        ad.addLast("kirk");
+        ad.addLast("kirk");
+        ad.addLast("kirk");
+        ad.addLast("kirk");
+        ad.addLast("kirk");
+
 
         assertThat(ad.get(1)).isEqualTo("name"); 
  
