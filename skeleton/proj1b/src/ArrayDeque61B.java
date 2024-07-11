@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class ArrayDeque61B<T> implements Deque61B<T>  {
 
@@ -88,23 +89,64 @@ public class ArrayDeque61B<T> implements Deque61B<T>  {
 
     @Override
     public T removeFirst() {
-        return null;
+        if (isEmpty()) {
+            throw new NoSuchElementException("Circular array deque is empty");
+        }
+        T removedElement = items[first];
+        items[first] = null; // 可选，将移除的元素置为null，方便垃圾回收
+        first = (first + 1) % items.length;
+        size--;
+        return removedElement;
     }
 
     @Override
     public T removeLast() {
-        return null;
+        if (isEmpty()) {
+            throw new NoSuchElementException("Circular array deque is empty");
+        }
+        last = (last - 1 + items.length) % items.length;
+        T removedElement = items[last];
+        items[last] = null; // 可选，将移除的元素置为null，方便垃圾回收
+        size--;
+        return removedElement;
+
     }
 
     @Override
     public T get(int index) {
-        return null;
+        if (index < 0 || index >= size) {
+            return null;
+        }
+        T returnValue = null;
+        int actualIndex = first + index;
+        if (actualIndex > items.length - 1) {
+            actualIndex = actualIndex - items.length;
+        }
+        returnValue = items[actualIndex];
+        return returnValue;
     }
 
     @Override
     public T getRecursive(int index) {
         return null;
     }
+
+    // size * RFACTOR     RFACTOR = 0.25 = size / length
+    private void resize(int capacity) {
+
+        T[] a = (T[])(new Object[capacity]);
+        int index = first;
+        for (int i = 0; i < size; i++) {
+            // index = adjustIndex(index);
+            if (index == items.length) {
+                index = 0;
+            }
+            a[i] = items[index];
+            index += 1;
+        }
+        items = a;
+    }
+
 
 
 }

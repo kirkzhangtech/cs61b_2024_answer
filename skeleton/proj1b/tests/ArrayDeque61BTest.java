@@ -1,4 +1,6 @@
 import jh61b.utils.Reflection;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -71,6 +73,49 @@ public class ArrayDeque61BTest {
  
 
 
+    }
+
+    @Test
+    @DisplayName("test get() function without resize")
+    public void  getTest(){
+
+        ArrayDeque61B ad  = new ArrayDeque61B<String>();
+
+        ad.addLast("my");
+        ad.addLast("name");
+        ad.addLast("is");
+        ad.addLast("kirk");
+
+        assertThat(ad.get(1)).isEqualTo("name"); 
+ 
+
+
+    }
+
+        @Test
+    public void testRemoveFirst() {
+        ArrayDeque61B<Integer> deque = new ArrayDeque61B<Integer>();
+        deque.addLast(1);
+        deque.addLast(2);
+        deque.addLast(3);
+
+        Assertions.assertEquals(1, deque.removeFirst());
+        Assertions.assertEquals(2, deque.removeFirst());
+        Assertions.assertEquals(3, deque.removeFirst());
+        Assertions.assertTrue(deque.isEmpty());
+    }
+
+    @Test
+    public void testRemoveLast() {
+        ArrayDeque61B<Integer> deque = new ArrayDeque61B<Integer>();
+        deque.addLast(1);
+        deque.addLast(2);
+        deque.addLast(3);
+
+        Assertions.assertEquals(3, deque.removeLast());
+        Assertions.assertEquals(2, deque.removeLast());
+        Assertions.assertEquals(1, deque.removeLast());
+        Assertions.assertTrue(deque.isEmpty());
     }
 
 
