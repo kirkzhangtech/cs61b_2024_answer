@@ -53,6 +53,7 @@ public class ArrayDeque61B<T> implements Deque61B<T>  {
 
     @Override
     public void addLast(T x) {
+        // 简单粗暴，其实这个地方应该是检查如果大于多少的使用率就扩容
         if (size == items.length) {
             resize(size * 2);
         }
@@ -128,13 +129,29 @@ public class ArrayDeque61B<T> implements Deque61B<T>  {
 
     @Override
     public T getRecursive(int index) {
-        return null;
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Index is out of bounds");
+        }
+        int position = (first + index) % items.length;
+        return getRecursiveHelper(position, first, 0);
     }
+
+    private T getRecursiveHelper(int targetPosition, int currentPosition, int currentIndex) {
+        if (currentIndex == size) {
+            return null;  // 边界条件，没有找到目标元素
+        }
+        if (currentPosition == targetPosition) {
+            return items[currentPosition];  // 找到目标元素
+        }
+        int nextPosition = (currentPosition + 1) % items.length;
+        return getRecursiveHelper(targetPosition, nextPosition, currentIndex + 1);
+    }
+
 
     // size * RFACTOR     RFACTOR = 0.25 = size / length
     private void resize(int capacity) {
 
-      T[] newArray = (T[]) new Object[capacity];
+        T[] newArray = (T[]) new Object[capacity];
         int current = first;
         for (int i = 0; i < size; i++) {
             newArray[i] = items[current];

@@ -142,5 +142,27 @@ public class ArrayDeque61BTest {
         Assertions.assertTrue(deque.isEmpty());
     }
 
+    @Test
+    public void testGetRecursive() {
+        ArrayDeque61B<Integer> deque = new ArrayDeque61B<>();
+        deque.addLast(10);
+        deque.addLast(20);
+        deque.addLast(30);
+        deque.addLast(40);
+        
+        // 测试索引在有效范围内的情况
+        Assertions.assertEquals(10, deque.getRecursive(0));
+        Assertions.assertEquals(20, deque.getRecursive(1));
+        Assertions.assertEquals(30, deque.getRecursive(2));
+        Assertions.assertEquals(40, deque.getRecursive(3));
+        
+        // 测试索引超出有效范围的情况
+        Assertions.assertThrows(IndexOutOfBoundsException.class, () -> {
+            deque.getRecursive(-1);
+        });
+        Assertions.assertThrows(IndexOutOfBoundsException.class, () -> {
+            deque.getRecursive(4);
+        });
+    }
 
 }
