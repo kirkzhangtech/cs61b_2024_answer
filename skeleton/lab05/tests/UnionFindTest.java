@@ -33,6 +33,7 @@ public class UnionFindTest {
         } catch (IllegalArgumentException e) {
             return;
         }
+        
         try {
             uf.union(1, 10);
             fail("Cannot union with an out of range vertex!");

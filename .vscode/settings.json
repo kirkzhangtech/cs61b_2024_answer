@@ -1,9 +1,13 @@
 {
     "java.project.sourcePaths": [
-        "skeleton/proj1b/src",
         "skeleton/proj1b/tests",
+        "skeleton/proj1b/src",
+        "skeleton/proj1a/tests",
         "skeleton/proj1a/src",
-        "skeleton/proj1a/tests"
+        "skeleton/lab05/tests",
+        "skeleton/lab05/src",
+        "skeleton/lab06/tests",
+        "skeleton/lab06/src"
     ],
     "java.project.referencedLibraries": [
         "/home/kirkzhang/github-workspace/cs61b_2024_answer/library/asm-commons-9.4.jar",
@@ -93,5 +97,6 @@
         "/home/kirkzhang/github-workspace/cs61b_2024_answer/library/commons-text-1.10.0.jar"
     ],
     "java.compile.nullAnalysis.mode": "automatic",
-    "java.debug.settings.onBuildFailureProceed": true
+    "java.debug.settings.onBuildFailureProceed": true,
+    "java.dependency.packagePresentation": "hierarchical"
 }
