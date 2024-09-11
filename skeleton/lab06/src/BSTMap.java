@@ -5,6 +5,11 @@ import java.util.Set;
 
 public class BSTMap<K , V>  implements  Map61B<K,V> {
 
+    class Entry {
+
+        public void  Entry {}
+
+    }
     /** Associates the specified value with the specified key in this map.
      *  If the map already contains the specified key, replaces the key's mapping
      *  with the value specified. */
